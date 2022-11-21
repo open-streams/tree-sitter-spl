@@ -1,0 +1,34 @@
+namespace my.example.namespace;
+
+composite MyExampleComposite {                                                               
+	config
+		logLevel : trace;
+
+	graph
+		stream<uint64 i> R01 = Functor(In) {
+			config logLevel : trace;
+		}
+} 
+
+composite SaleJoin {                                                               
+  graph                                                                            
+    stream<rstring buyer, rstring item, decimal64 price> Bid = FileSource() {      
+      param format: csv;                                    
+    }                                                                              
+    stream<rstring seller, rstring item, decimal64 price> Ask = FileSource() {     
+      param format: csv;                                    
+    }                                                                              
+    stream<rstring buyer, rstring seller, rstring item> Sale = Join(Bid; Ask) {    
+      param  match : Bid.item == Ask.item && Bid.price >= Ask.price;               
+      output Sale  : item = Bid.item;                                              
+    }                                                                              
+    () as Sink = FileSink(Sale) { param format: csv; }         
+}       
+
+composite SaleJoin {                                                               
+  graph                                                                            
+    () as Sale = Join(Bid; Ask) {    
+      param  match : yes;               
+      output Sale  : item = Bid.item;                                              
+    }                                                                              
+}       

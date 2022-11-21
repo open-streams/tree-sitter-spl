@@ -1,0 +1,31 @@
+{
+  "name": "tree-sitter-spl",
+  "version": "1.0.0",
+  "description": "Tree-sitter grammar for SPL",
+  "main": "bindings/node",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/open-streams/tree-sitter-spl.git"
+  },
+  "keywords": [
+    "spl",
+    "tree-sitter"
+  ],
+  "author": "Xavier R. Guérin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/open-streams/tree-sitter-spl/issues"
+  },
+  "homepage": "https://github.com/open-streams/tree-sitter-spl#readme",
+  "dependencies": {
+    "nan": "^2.17.0",
+    "typescript": "^4.9.3",
+    "typescript-language-server": "^2.1.0"
+  },
+  "devDependencies": {
+    "tree-sitter-cli": "^0.20.7"
+  }
+}
